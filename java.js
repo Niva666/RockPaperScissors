@@ -18,7 +18,7 @@ if (playerGame) {
                 : computer <=6 && computer >=4 ? choice="paper"
                 : computer > 6 ? choice = "scissors"
                 : "dick"
-                console.log(choice);
+                alert(choice);
 
                 let winner;
                 let w1="player wins";
@@ -38,7 +38,7 @@ if (playerGame) {
             else{alert("You didnt enter Rock, Paper or Scissors, Dude! This is a joke."
              + "ON YOU!!!");}
     }
-    else {"I guess you really wanted to waste your Time!?"}
+    else {alert("I guess you really wanted to waste your Time!?")}
 }   
  else {alert("Ok, why did you click on this Programm then," + 
         "do something else then, dont waist my time then!!!")
