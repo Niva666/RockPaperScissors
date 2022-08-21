@@ -1,30 +1,46 @@
 
+let playerGame = confirm("Shall we play Rock,Paper,Scissors??")
 
-let player = prompt("Rock,Paper or Scissors...???");
-console.log(player);
+if (playerGame) {
 
-function a () {
-let computer = Math.floor(Math.random()*10);
-console.log(computer);
+    let playerChoice = prompt("Eneter Rock,Paper or Scissors...???");
 
-let choice;
-computer <=3 ? choice="rock" 
-: computer <=6 && computer >=4 ? choice="paper"
-: computer > 6 ? choice = "scissors"
-: "dick"
-console.log(choice);
+    if (playerChoice) {
+        let playerOne = playerChoice.trim().toLowerCase();
+            if(playerOne === "rock" 
+            || playerOne === "paper" 
+            || playerOne === "scissors") 
+            {   console.log(playerOne)
+                let computer = Math.floor(Math.random()*10);
 
+                let choice;
+                computer <=3 ? choice="rock" 
+                : computer <=6 && computer >=4 ? choice="paper"
+                : computer > 6 ? choice = "scissors"
+                : "dick"
+                console.log(choice);
 
-let winner;
-let w1="player wins";
-let w2="computer wins";
-let w0="tie";
+                let winner;
+                let w1="player wins";
+                let w2="computer wins";
+                let w0="tie";
 
-player === choice ? winner=w0
-: player === "rock" && choice === "paper" ? winner = w2 
-: player === "paper" && choice === "scissors" ? winner = w2 
-: player === "scissors" && choice === "rock" ? winner = w2
-: winner = w1;
-console.log(winner);
+                playerOne === choice ? winner = w0
+                : playerOne === "rock" && choice === "paper" ? winner = w2 
+                : playerOne === "paper" && choice === "scissors" ? winner = w2 
+                : playerOne === "scissors" && choice === "rock" ? winner = w2
+                : winner = w1;
+                alert(winner);
+
+                let playAgain= confirm("Play Again");
+                playAgain ? location.reload () : alert("Thanks for playing!");
+                }
+            else{alert("You didnt enter Rock, Paper or Scissors, Dude! This is a joke."
+             + "ON YOU!!!");}
+    }
+    else {"I guess you really wanted to waste your Time!?"}
+}   
+ else {alert("Ok, why did you click on this Programm then," + 
+        "do something else then, dont waist my time then!!!")
 }
-a();
+
