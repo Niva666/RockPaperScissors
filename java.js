@@ -1,8 +1,8 @@
-
 let playerGame = confirm("Shall we play Rock,Paper,Scissors??")
 
 if (playerGame) {
-
+    for (i = 1; i <= 5;i++) {
+        alert("round " + i);
     let playerChoice = prompt("Eneter Rock,Paper or Scissors...???");
 
     if (playerChoice) {
@@ -32,6 +32,9 @@ if (playerGame) {
                 : winner = w1;
                 alert(winner);
 
+
+                
+
                 let playAgain= confirm("Play Again");
                 playAgain ? location.reload () : alert("Thanks for playing!");
                 }
@@ -39,8 +42,6 @@ if (playerGame) {
              + "ON YOU!!!");}
     }
     else {alert("I guess you really wanted to waste your Time!?")}
-}   
+} }  
  else {alert("Ok, why did you click on this Programm then," + 
-        "do something else then, dont waist my time then!!!")
-}
-
+        "do something else then, dont waist my time then!!!")}
