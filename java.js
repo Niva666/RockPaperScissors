@@ -5,64 +5,67 @@ function getComputerChoice () {
                 : computer <=6 && computer >=4 ? choice="paper"
                 : computer > 6 ? choice = "scissors"
                 : "dick"
-                alert("Computer choice: " + choice);
+                alert("Computerchoice: " + choice);
                 return(choice);
 }
+
 function getPlayerChoice () {
 
 
     let playerChoice = prompt("Eneter Rock,Paper or Scissors...???");
-    
-    if (playerChoice) {
+    if (playerChoice){
     let playerOne = playerChoice.trim().toLowerCase();
-    {
+    
         if(playerOne === "rock" 
         || playerOne === "paper" 
         || playerOne === "scissors") 
         {
-        return(playerChoice);}
-        else {alert("Didnt enter value!")} 
-    }
-    }
-    else {alert("You like wasting Time")}
-} 
+        alert("PlayerChoice: " + playerOne);
+        return(playerOne);
+}  } else {alert("You came alll this way just to give up now...dude...now you Play!!!")}return;}
+
+
 function playRound (playerSelection,computerSelection) {     
 
+
+let userscore=0;
+let compscore=0;
+
+let a = confirm("Wanne play a game?")
+if (a) {
+let a = prompt("How many rounds do you wanne play?")
+if(a){
+for(i = 1; i <= a; i++){
+    alert("Round: " + i)
+    
 playerSelection = getPlayerChoice();
 computerSelection = getComputerChoice();
 
-let winner;
-let w0 = ("Tie Game");
-let w1 = ("Player is the winner");
-let w2 = ("Computer is the winner");
-let userscore=0;
-let compscore=0;
 
-playerSelection === computerSelection ? winner = w0
-: playerSelection === "rock" && computerSelection === "scissors" ? winner = w1
-: playerSelection === "paper" && computerSelection === "rock" ? winner = w1
-: playerSelection === "scissors" && computerSelection === "paper" ? winner = w1
-: winner = w2;
-alert(winner);
+if (playerSelection === computerSelection) {alert("Tie Game"), i-=1, alert("Same Round:")}
+
+else if (playerSelection === "rock" && computerSelection === "scissors") 
+{ alert("Player is the winner", + ("Playerscore :" +(userscore+=1)))}
+
+else if(playerSelection === "paper" && computerSelection === "rock") 
+{ alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
+
+else if(playerSelection === "scissors" && computerSelection === "paper") 
+{ alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
+
+else {alert("Computer is the winner", +("Computerscore: " + (compscore+=1) ))}
+} 
+
+if(userscore>compscore) {alert("YOU WON!!!!YOU GO GET YOUR DREAMS")}
+else if (userscore<compscore) {alert("GAME OVER")}
+else{""}
+}
+else {alert("You like wasting Time?....Bye!!!")}
+}
+else{alert("OK,bye")}
+return;
+
 
 }
-function playGame() {
 
-
-let winner;
-let w0 = ("Tie Game");
-let w1 = ("Player is the winner");
-let w2 = ("Computer is the winner");
-let userscore=0;
-let compscore=0;
-let letsPlay = confirm("Play a game?")
-if(letsPlay){  
-{for (let i = 1; i <= 5; i++) {
-alert (`Round : ${i}`);
 playRound();
-}
-}}
-else{alert("Thanks")
-}
-}
-playGame();
