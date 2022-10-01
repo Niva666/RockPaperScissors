@@ -34,7 +34,7 @@ let compscore=0;
 let a = confirm("Wanne play a game?")
 if (a) {
 let a = prompt("How many rounds do you wanne play?")
-if(a = typeof(number) && a>0){
+if(a != typeof(String) && a>0){
 for(i = 1; i <= a; i++){
     alert("Round: " + i)
     
@@ -67,5 +67,5 @@ return;
 
 
 }
-
-playRound();
+function alertFunction () {
+playRound();}
