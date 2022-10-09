@@ -1,0 +1,11 @@
+.signs {
+     display: none;
+}
+
+.play {
+    visibility: visible;
+}
+
+.bye {
+    display: none;
+}
