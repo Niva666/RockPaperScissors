@@ -1,71 +1,61 @@
-function getComputerChoice () {
-    let choice;
-        let computer = Math.floor(Math.random()*10);
-                computer <=3 ? choice="rock" 
-                : computer <=6 && computer >=4 ? choice="paper"
-                : computer > 6 ? choice = "scissors"
-                : "dick"
-                alert("Computerchoice: " + choice);
-                return(choice);
+const yes = document.querySelector('.yes');
+const no = document.querySelector('.no');
+const signs = document.querySelector('.signs');
+const play = document.querySelector('.play');
+const bye = document.querySelector('.bye');
+const bro = document.querySelector('.bro');
+const bro2 = document.querySelector('.bro2');
+const winner = document.querySelector('.winner');
+const sign = document.querySelectorAll(".sign");
+
+function revealSigns () {
+    if(play.style.display != "none") {
+        signs.style.display = "block"
+        play.style.display = "none"
+    } 
 }
 
-function getPlayerChoice () {
-
-
-    let playerChoice = prompt("Eneter Rock,Paper or Scissors...???");
-    if (playerChoice){
-    let playerOne = playerChoice.trim().toLowerCase();
-    
-        if(playerOne === "rock" 
-        || playerOne === "paper" 
-        || playerOne === "scissors") 
-        {
-        alert("PlayerChoice: " + playerOne);
-        return(playerOne);
-}  } else {alert("You came alll this way just to give up now...dude...now you Play!!!")}return;}
-
-
-function playRound (playerSelection,computerSelection) {     
-
-
-let userscore=0;
-let compscore=0;
-
-let a = confirm("Wanne play a game?")
-if (a) {
-let a = prompt("How many rounds do you wanne play?")
-if(a = typeof(number) && a>0){
-for(i = 1; i <= a; i++){
-    alert("Round: " + i)
-    
-playerSelection = getPlayerChoice();
-computerSelection = getComputerChoice();
-
-
-if (playerSelection === computerSelection) {alert("Tie Game"), i-=1, alert("Same Round:")}
-
-else if (playerSelection === "rock" && computerSelection === "scissors") 
-{ alert("Player is the winner", + ("Playerscore :" +(userscore+=1)))}
-
-else if(playerSelection === "paper" && computerSelection === "rock") 
-{ alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
-
-else if(playerSelection === "scissors" && computerSelection === "paper") 
-{ alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
-
-else {alert("Computer is the winner", +("Computerscore: " + (compscore+=1) ))}
+function goodBye () {
+    if(play.style.display != "none")
+        bye.style.display = "block"
+        play.style.display = "none"
 } 
 
-if(userscore>compscore) {alert("YOU WON!!!!YOU GO GET YOUR DREAMS")}
-else if (userscore<compscore) {alert("GAME OVER")}
-else{""}
-}
-else {alert("You like wasting Time?....Bye!!!")}
-}
-else{alert("OK,bye")}
-return;
+yes.addEventListener('click' , revealSigns);
+no.addEventListener('click', goodBye);
 
 
+function getPlayerChoice () {
+    
+    sign.forEach((sig) => {
+        sig.addEventListener("click", function () {
+            const playerChoice = this.textContent;
+            bro.textContent = "Player Chose: " + playerChoice ; 
+            return playerChoice;
+        })
+    })
 }
 
-playRound();
+function getComputerChoice () {
+        
+        sign.forEach((sig) => {
+            sig.addEventListener("click", function pi(){
+            let computer = ["rock","paper","scissors"];
+            const compChoise = computer[Math.floor(Math.random()*3)];
+            bro2.innerHTML = `Computer Chose: ${compChoise}`;
+            return bro2.innerHTML;
+            }) 
+        })
+    }
+
+console.log(getComputerChoice);
+    
+    sign.forEach((sig) => {
+        sig.addEventListener("click", function(e){
+        let a = getPlayerChoice ();
+        let b = getComputerChoice();
+        console.log(a);
+        console.log(b);
+        
+        })
+    })
