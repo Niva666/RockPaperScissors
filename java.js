@@ -7,6 +7,11 @@ const bro = document.querySelector('.bro');
 const bro2 = document.querySelector('.bro2');
 const winner = document.querySelector('.winner');
 const sign = document.querySelectorAll(".sign");
+const ps = document.querySelector(".ps");
+const cs = document.querySelector(".cs");
+const round = document.querySelector(".round");
+const tie = document.querySelector(".Tie");
+const gameWinner = document.querySelector('.gameWinner');
 
 function revealSigns () {
     if(play.style.display != "none") {
@@ -21,41 +26,41 @@ function goodBye () {
         play.style.display = "none"
 } 
 
-yes.addEventListener('click' , revealSigns);
 no.addEventListener('click', goodBye);
+yes.addEventListener('click' , revealSigns);
 
+let userscore = 0;
+let compscore = 0;
 
-function getPlayerChoice () {
+function Game () {
     
-    sign.forEach((sig) => {
-        sig.addEventListener("click", function () {
-            const playerChoice = this.textContent;
-            bro.textContent = "Player Chose: " + playerChoice ; 
-            return playerChoice;
-        })
-    })
-}
+    sign.forEach((sign) => {
+        sign.addEventListener("click", function () {    
+            const playerChoise = sign.id
+            console.log('PC:'+ playerChoise)
+            bro.textContent = "Player Chose: " + playerChoise ; 
+            //Computer Choise
 
-function getComputerChoice () {
-        
-        sign.forEach((sig) => {
-            sig.addEventListener("click", function pi(){
             let computer = ["rock","paper","scissors"];
             const compChoise = computer[Math.floor(Math.random()*3)];
+            console.log('CC:'+compChoise);
             bro2.innerHTML = `Computer Chose: ${compChoise}`;
-            return bro2.innerHTML;
-            }) 
-        })
-    }
+            
+           
+            if(playerChoise===compChoise){winner.innerHTML="Tie", tie.innerHTML= "No Points"}
+            else if (playerChoise==='rock'&& compChoise==='scissors'){winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' + (userscore+=1)}
+            else if (playerChoise==='paper'&& compChoise==='rock'){winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1)}
+            else if (playerChoise==='scissors'&& compChoise==='paper'){winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1)}
+            else{winner.innerHTML="Computer won the Round",cs.innerHTML='Computer Score: ' + (compscore+=1)}
+            
 
-console.log(getComputerChoice);
+            if(userscore>compscore) {gameWinner.innerHTML=("YOU WON!!!!YOU GO GET YOUR DREAMS")}
+            else if (userscore<compscore) {gameWinner.innerHTML=("GAME OVER")}
+            else{""}
+            //
+
+        })})}
     
-    sign.forEach((sig) => {
-        sig.addEventListener("click", function(e){
-        let a = getPlayerChoice ();
-        let b = getComputerChoice();
-        console.log(a);
-        console.log(b);
-        
-        })
-    })
+
+
+Game();
