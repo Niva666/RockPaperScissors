@@ -1,11 +1,50 @@
 .signs {
      display: none;
+     text-align: center;
+}
+.bro {
+    text-align: center;
+} 
+.bro2 {
+    text-align: center;
+}
+.winner {
+    text-align: center;
 }
 
 .play {
     visibility: visible;
 }
-
+.ps{
+    text-align: center;
+}
+.cs {
+    text-align: center;
+}
+.tie {
+    text-align: center;
+}
 .bye {
     display: none;
+}
+.round {
+    display: none;
+    text-align: center;
+    
+}
+.tie {
+    display: none;
+}
+.ps {
+    display: none;
+}
+.cs {
+    display: none;
+}
+.gameWinner{
+    
+    color: blue;
+    border: darkblue;
+    font-size: 50px;
+    text-align: center;
 }
