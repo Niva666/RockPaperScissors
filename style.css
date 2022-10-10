@@ -42,9 +42,12 @@
     display: none;
 }
 .gameWinner{
-    
     color: blue;
     border: darkblue;
     font-size: 50px;
+    text-align: center;
+}
+.again {
+    display: none;
     text-align: center;
 }
