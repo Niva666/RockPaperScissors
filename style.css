@@ -50,6 +50,8 @@ body{
 .bye {
     display: none;
     text-align: center;
+    margin: inherit;
+    font-size: 30px
 }
 .round {
     display: none;
