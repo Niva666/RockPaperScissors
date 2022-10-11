@@ -1,0 +1,105 @@
+body{
+    background-color: blueviolet;
+}
+
+.signs {
+     display: none;
+     text-align: center;
+     font-size: 30px
+}
+.bro {
+    text-align: center;
+    margin: inherit;
+    font-size: 30px
+    
+} 
+.bro2 {
+    text-align: center;
+    margin: inherit;
+    font-size: 30px
+}
+.winner {
+    text-align: center;
+    font-size: 30px
+}
+
+.play {
+    visibility: visible;
+    text-align: center;
+    font-size: 35px;
+}
+.yes{
+    margin-top: 2%;
+    font-size: larger;
+}
+.no {
+    font-size: larger;
+}
+.ps{
+    text-align: center;
+    font-size: 30px
+}
+.cs {
+    text-align: center;
+    font-size: 30px
+}
+.tie {
+    text-align: center;
+    font-size: 30px
+}
+.bye {
+    display: none;
+    text-align: center;
+    margin: inherit;
+    font-size: 30px
+}
+.round {
+    display: none;
+    text-align: center;
+    margin: inherit;
+    font-size: 30px
+    
+}
+.tie {
+    display: none;
+    margin: inherit;
+}
+.ps {
+    display: none;
+    margin: inherit;
+}
+.cs {
+    display: none;
+    margin: inherit;
+}
+.gameWinner{
+    color: blue;
+    border: darkblue;
+    font-size: 50px;
+    text-align: center;
+}
+.again {
+    display: none;
+    text-align: center;
+}
+.rest {
+    text-align: right;
+    margin-top: inherit;
+}
+#restart{
+
+    display: none;
+    margin: auto;
+    font-size: 30px
+
+}
+h1{
+    text-align: center;
+    flex-direction: row;
+}
+h2{
+    text-align: center;
+}
+.img1{
+    width: 110px
+}

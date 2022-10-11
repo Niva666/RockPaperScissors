@@ -1,14 +1,35 @@
-function getComputerChoice () {
-    let choice;
-        let computer = Math.floor(Math.random()*10);
-                computer <=3 ? choice="rock" 
-                : computer <=6 && computer >=4 ? choice="paper"
-                : computer > 6 ? choice = "scissors"
-                : "dick"
-                alert("Computerchoice: " + choice);
-                return(choice);
+const yes = document.querySelector('.yes');
+const no = document.querySelector('.no');
+const signs = document.querySelector('.signs');
+const play = document.querySelector('.play');
+const bye = document.querySelector('.bye');
+const bro = document.querySelector('.bro');
+const bro2 = document.querySelector('.bro2');
+const winner = document.querySelector('.winner');
+const sign = document.querySelectorAll(".sign");
+const ps = document.querySelector(".ps");
+const cs = document.querySelector(".cs");
+const round = document.querySelector(".round");
+const tie = document.querySelector(".tie");
+const gameWinner = document.querySelector('.gameWinner');
+const again = document.querySelector('.again');
+const yes2 = document.querySelector('yes2');
+const no2 = document.querySelector('.no2');
+const restart = document.querySelector('#restart')
+const img1 = document.querySelector('.img1');
+function revealSigns () {
+    if(play.style.display != "none") {
+        signs.style.display = "block"
+        play.style.display = "none"
+        round.style.display = "block"
+        tie.style.display = "block"
+        ps.style.display = "block"
+        cs.style.display = "block"
+
+    } 
 }
 
+<<<<<<< HEAD
 function getPlayerChoice () {
 
 
@@ -54,18 +75,120 @@ else if(playerSelection === "scissors" && computerSelection === "paper")
 { alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
 
 else {alert("Computer is the winner", +("Computerscore: " + (compscore+=1) ))}
+=======
+function goodBye () {
+    if(play.style.display != "none")
+        bye.style.display = "block"
+        play.style.display = "none"
+>>>>>>> rps-ui
 } 
-
-if(userscore>compscore) {alert("YOU WON!!!!YOU GO GET YOUR DREAMS")}
-else if (userscore<compscore) {alert("GAME OVER")}
-else{""}
+function againHide () {
+        round.style.display = "none"
+        tie.style.display = "none"
+        ps.style.display = "none"
+        cs.style.display = "none"
+        bro.style.display = "none"
+        bro2.style.display = "none"
+        winner.style.display = "none"
+        signs.style.display = "none"
+        restart.style.display="block"
 }
-else {alert("You like wasting Time?....Bye!!!")}
-}
-else{alert("OK,bye")}
-return;
+function show () {
+        round.style.display = "block"
+        tie.style.display = "block"
+        ps.style.display = "block"
+        cs.style.display = "block"
+        bro.style.display = "block"
+        bro2.style.display = "block"
+        winner.style.display = "block"
+        signs.style.display = "block"
+        tie.innerHTML= 'Ties: '+ (tiescore=0);
+        round.innerHTML = 'Round: ' + (roundcount=0);
+        cs.innerHTML='Computer Score: ' + (compscore=0)
+        ps.innerHTML='Player Score: ' + (userscore=0)
+        
 
-
 }
+<<<<<<< HEAD
 function alertFunction () {
 playRound();}
+=======
+
+let userscore = 0;
+let compscore = 0;
+let tiescore = 0;
+let roundcount = 0;
+let playerChoise;
+let computerChoice;
+
+
+function playerTurn () {
+    sign.forEach((sign) => {
+        sign.addEventListener("click", function () {   
+            playerChoise = sign.textContent
+            bro.textContent = "Player Chose: " + playerChoise ; 
+            return(playerChoise);
+        })
+    })
+}
+
+function computerTurn () {
+    let computer = ["rock","paper","scissors"];
+    computerChoice = computer[Math.floor(Math.random()*3)];
+    bro2.innerHTML = `Computer Chose: ${computerChoice}`;
+    return(computerChoice);
+    
+}
+
+function playRound () {
+    
+    if(playerChoise===computerChoice){winner.innerHTML="Tie", tie.innerHTML= 'Ties: '+ (tiescore+=1),
+    round.innerHTML = 'Round: ' + (roundcount+=1)}
+    else if (playerChoise==='rock'&& computerChoice==='scissors')
+    {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' (userscore+=1),
+    round.innerHTML = 'Round: ' + (roundcount+=1)}
+    else if (playerChoise==='paper'&& computerChoice==='rock')
+    {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1),
+    round.innerHTML = 'Round: ' + (roundcount+=1)}
+    else if (playerChoise==='scissors'&& computerChoice==='paper')
+    {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1),
+    round.innerHTML = 'Round: ' + (roundcount+=1)}
+    else{winner.innerHTML="Computer won the Round",
+    cs.innerHTML='Computer Score: ' + (compscore+=1),
+    round.innerHTML = 'Round: ' + (roundcount+=1)}
+}
+
+function points () {
+
+    if(userscore===5) {gameWinner.style.display="block",gameWinner.innerHTML=("YOU WON!!!!YOU GO GET YOUR DREAMS"),againHide()}
+    else if (compscore===5) {gameWinner.style.display="block",gameWinner.innerHTML=("GAME OVER"),againHide()}
+    else if(tiescore===5){gameWinner.style.display="block",gameWinner.innerHTML=("Tie Game"),againHide ()}
+            
+}
+
+function Game () {
+    
+    no.addEventListener('click', goodBye);
+    yes.addEventListener('click' , revealSigns);
+    round.innerHTML = 'Round: ' + (roundcount=1);
+    tie.innerHTML= 'Ties: '+ (tiescore=0);
+    ps.innerHTML='Player Score: ' + (userscore=0);
+    cs.innerHTML='Computer Score: ' + (compscore=0);
+    sign.forEach((sign) => {
+        sign.addEventListener("click", function () {   
+            playerTurn();
+            computerTurn();
+            playRound ();
+            points();  
+            restart.addEventListener('click', function () {
+                restart.style.display="none";
+                gameWinner.style.display="none";
+                show();
+            })
+        })
+        })}
+    
+
+
+Game();
+>>>>>>> rps-ui
