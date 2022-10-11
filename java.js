@@ -15,6 +15,7 @@ const gameWinner = document.querySelector('.gameWinner');
 const again = document.querySelector('.again');
 const yes2 = document.querySelector('yes2');
 const no2 = document.querySelector('.no2');
+const restart = document.querySelector('#restart')
 
 function revealSigns () {
     if(play.style.display != "none") {
@@ -42,6 +43,23 @@ function againHide () {
         bro2.style.display = "none"
         winner.style.display = "none"
         signs.style.display = "none"
+        restart.style.display="block"
+}
+function show () {
+        round.style.display = "block"
+        tie.style.display = "block"
+        ps.style.display = "block"
+        cs.style.display = "block"
+        bro.style.display = "block"
+        bro2.style.display = "block"
+        winner.style.display = "block"
+        signs.style.display = "block"
+        tie.innerHTML= 'Ties: '+ (tiescore=0);
+        round.innerHTML = 'Round: ' + (roundcount=0);
+        cs.innerHTML='Computer Score: ' + (compscore=0)
+        ps.innerHTML='Player Score: ' + (userscore=0)
+        
+
 }
 
 let userscore = 0;
@@ -75,26 +93,24 @@ function playRound () {
     if(playerChoise===computerChoice){winner.innerHTML="Tie", tie.innerHTML= 'Ties: '+ (tiescore+=1),
     round.innerHTML = 'Round: ' + (roundcount+=1)}
     else if (playerChoise==='rock'&& computerChoice==='scissors')
-    {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' + (userscore+=1),
-    cs.innerHTML='Computer Score: ' + (compscore-=1),
+    {winner.innerHTML="Player won the Round",ps.innerHTML=`Player Score: ${userscore+=1} Points`
     round.innerHTML = 'Round: ' + (roundcount+=1)}
     else if (playerChoise==='paper'&& computerChoice==='rock')
     {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1),
-    cs.innerHTML='Computer Score: ' + (compscore-=1),
     round.innerHTML = 'Round: ' + (roundcount+=1)}
     else if (playerChoise==='scissors'&& computerChoice==='paper')
     {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1),
-    cs.innerHTML='Computer Score: ' + (compscore-=1),
     round.innerHTML = 'Round: ' + (roundcount+=1)}
-    else{winner.innerHTML="Computer won the Round",cs.innerHTML='Computer Score: ' + (compscore+=1),ps.innerHTML='Player Score: ' +(userscore-=1),
+    else{winner.innerHTML="Computer won the Round",
+    cs.innerHTML='Computer Score: ' + (compscore+=1),
     round.innerHTML = 'Round: ' + (roundcount+=1)}
 }
 
 function points () {
 
-    if(userscore===5) {gameWinner.innerHTML=("YOU WON!!!!YOU GO GET YOUR DREAMS"),againHide()}
-    else if (compscore===5) {gameWinner.innerHTML=("GAME OVER"),againHide()}
-    else if(tiescore===10){gameWinner.innerHTML=("Tie Game"),againHide ()}
+    if(userscore===5) {gameWinner.style.display="block",gameWinner.innerHTML=("YOU WON!!!!YOU GO GET YOUR DREAMS"),againHide()}
+    else if (compscore===5) {gameWinner.style.display="block",gameWinner.innerHTML=("GAME OVER"),againHide()}
+    else if(tiescore===5){gameWinner.style.display="block",gameWinner.innerHTML=("Tie Game"),againHide ()}
             
 }
 
@@ -112,6 +128,11 @@ function Game () {
             computerTurn();
             playRound ();
             points();  
+            restart.addEventListener('click', function () {
+                restart.style.display="none";
+                gameWinner.style.display="none";
+                show();
+            })
         })
         })}
     

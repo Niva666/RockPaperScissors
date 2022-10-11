@@ -14,6 +14,7 @@
 
 .play {
     visibility: visible;
+    text-align: center;
 }
 .ps{
     text-align: center;
@@ -26,6 +27,7 @@
 }
 .bye {
     display: none;
+    text-align: center;
 }
 .round {
     display: none;
@@ -49,5 +51,18 @@
 }
 .again {
     display: none;
+    text-align: center;
+}
+.rest {
+    text-align: right;
+}
+#restart{
+    display: none;
+    margin: auto;
+}
+h1{
+    text-align: center;
+}
+h2{
     text-align: center;
 }
