@@ -29,58 +29,10 @@ function revealSigns () {
     } 
 }
 
-<<<<<<< HEAD
-function getPlayerChoice () {
-
-
-    let playerChoice = prompt("Eneter Rock,Paper or Scissors...???");
-    if (playerChoice){
-    let playerOne = playerChoice.trim().toLowerCase();
-    
-        if(playerOne === "rock" 
-        || playerOne === "paper" 
-        || playerOne === "scissors") 
-        {
-        alert("PlayerChoice: " + playerOne);
-        return(playerOne);
-}  } else {alert("You came alll this way just to give up now...dude...now you Play!!!")}return;}
-
-
-function playRound (playerSelection,computerSelection) {     
-
-
-let userscore=0;
-let compscore=0;
-
-let a = confirm("Wanne play a game?")
-if (a) {
-let a = prompt("How many rounds do you wanne play?")
-if(a != typeof(String) && a>0){
-for(i = 1; i <= a; i++){
-    alert("Round: " + i)
-    
-playerSelection = getPlayerChoice();
-computerSelection = getComputerChoice();
-
-
-if (playerSelection === computerSelection) {alert("Tie Game"), i-=1, alert("Same Round:")}
-
-else if (playerSelection === "rock" && computerSelection === "scissors") 
-{ alert("Player is the winner", + ("Playerscore :" +(userscore+=1)))}
-
-else if(playerSelection === "paper" && computerSelection === "rock") 
-{ alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
-
-else if(playerSelection === "scissors" && computerSelection === "paper") 
-{ alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
-
-else {alert("Computer is the winner", +("Computerscore: " + (compscore+=1) ))}
-=======
 function goodBye () {
     if(play.style.display != "none")
         bye.style.display = "block"
         play.style.display = "none"
->>>>>>> rps-ui
 } 
 function againHide () {
         round.style.display = "none"
@@ -109,10 +61,6 @@ function show () {
         
 
 }
-<<<<<<< HEAD
-function alertFunction () {
-playRound();}
-=======
 
 let userscore = 0;
 let compscore = 0;
@@ -191,4 +139,3 @@ function Game () {
 
 
 Game();
->>>>>>> rps-ui
