@@ -16,7 +16,7 @@ const again = document.querySelector('.again');
 const yes2 = document.querySelector('yes2');
 const no2 = document.querySelector('.no2');
 const restart = document.querySelector('#restart')
-
+const img1 = document.querySelector('.img1');
 function revealSigns () {
     if(play.style.display != "none") {
         signs.style.display = "block"
@@ -73,7 +73,7 @@ let computerChoice;
 function playerTurn () {
     sign.forEach((sign) => {
         sign.addEventListener("click", function () {   
-            playerChoise = sign.textContent;
+            playerChoise = sign.textContent
             bro.textContent = "Player Chose: " + playerChoise ; 
             return(playerChoise);
         })
@@ -93,7 +93,7 @@ function playRound () {
     if(playerChoise===computerChoice){winner.innerHTML="Tie", tie.innerHTML= 'Ties: '+ (tiescore+=1),
     round.innerHTML = 'Round: ' + (roundcount+=1)}
     else if (playerChoise==='rock'&& computerChoice==='scissors')
-    {winner.innerHTML="Player won the Round",ps.innerHTML=`Player Score: ${userscore+=1} Points`
+    {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' (userscore+=1),
     round.innerHTML = 'Round: ' + (roundcount+=1)}
     else if (playerChoise==='paper'&& computerChoice==='rock')
     {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1),
