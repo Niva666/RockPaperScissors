@@ -1,141 +1,125 @@
-const yes = document.querySelector('.yes');
-const no = document.querySelector('.no');
-const signs = document.querySelector('.signs');
-const play = document.querySelector('.play');
-const bye = document.querySelector('.bye');
-const bro = document.querySelector('.bro');
-const bro2 = document.querySelector('.bro2');
-const winner = document.querySelector('.winner');
-const sign = document.querySelectorAll(".sign");
-const ps = document.querySelector(".ps");
-const cs = document.querySelector(".cs");
-const round = document.querySelector(".round");
-const tie = document.querySelector(".tie");
+const round = document.querySelector('.round');
+const btn = document.querySelectorAll('.btn');
+const btns = document.querySelector('.btns')
+const playerChose = document.querySelector('.playerChose');
+const computerChose = document.querySelector('.computerChose');
+const playerScore = document.querySelector('.playerScore');
+const compScore = document.querySelector('.compScore');
+const tie = document.querySelector('.tie');
+const roundWinner = document.querySelector('.roundWinner');
+const scoreBoard = document.querySelector('.scoreBoard');
 const gameWinner = document.querySelector('.gameWinner');
-const again = document.querySelector('.again');
-const yes2 = document.querySelector('yes2');
-const no2 = document.querySelector('.no2');
-const restart = document.querySelector('#restart')
-const img1 = document.querySelector('.img1');
-function revealSigns () {
-    if(play.style.display != "none") {
-        signs.style.display = "block"
-        play.style.display = "none"
-        round.style.display = "block"
-        tie.style.display = "block"
-        ps.style.display = "block"
-        cs.style.display = "block"
+const restart = document.querySelector('.restart')
+const rBtn = document.querySelector('.rBtn');
 
-    } 
-}
-
-function goodBye () {
-    if(play.style.display != "none")
-        bye.style.display = "block"
-        play.style.display = "none"
-} 
-function againHide () {
-        round.style.display = "none"
-        tie.style.display = "none"
-        ps.style.display = "none"
-        cs.style.display = "none"
-        bro.style.display = "none"
-        bro2.style.display = "none"
-        winner.style.display = "none"
-        signs.style.display = "none"
-        restart.style.display="block"
-}
-function show () {
-        round.style.display = "block"
-        tie.style.display = "block"
-        ps.style.display = "block"
-        cs.style.display = "block"
-        bro.style.display = "block"
-        bro2.style.display = "block"
-        winner.style.display = "block"
-        signs.style.display = "block"
-        tie.innerHTML= 'Ties: '+ (tiescore=0);
-        round.innerHTML = 'Round: ' + (roundcount=0);
-        cs.innerHTML='Computer Score: ' + (compscore=0)
-        ps.innerHTML='Player Score: ' + (userscore=0)
-        
-
-}
-
-let userscore = 0;
-let compscore = 0;
+let pscore = 0;
+let cscore = 0;
 let tiescore = 0;
-let roundcount = 0;
+let roundcount = 1;
+let compChose;
 let playerChoise;
-let computerChoice;
+let winner;
 
-
-function playerTurn () {
-    sign.forEach((sign) => {
-        sign.addEventListener("click", function () {   
-            playerChoise = sign.textContent
-            bro.textContent = "Player Chose: " + playerChoise ; 
-            return(playerChoise);
+function Game () {
+    btn.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            round.style.display = "block"; 
+            scoreBoard.style.display = "block"; 
+            playerChoise = btn.id;
+            compChose = getComputerChoise();
+            winner = playRound(playerChoise,compChose);
+            showWinner(winner,playerChoise,compChose);
+            winnerOfTheGame(pscore,cscore,tiescore);
+            restartTheGame();
+            console.log(playerChoise,compChose,winner);
         })
     })
 }
 
-function computerTurn () {
+function getComputerChoise () {
     let computer = ["rock","paper","scissors"];
-    computerChoice = computer[Math.floor(Math.random()*3)];
-    bro2.innerHTML = `Computer Chose: ${computerChoice}`;
-    return(computerChoice);
+    compChose = computer[Math.floor(Math.random()*3)];
+    return(compChose);
+}
+
+function playRound (playerChoise,compChose) { 
+
+    if (playerChoise === compChose){return("Tie Game")}
+    else if(playerChoise==="rock" && compChose==="scissors"){return("Player")}
+    else if(playerChoise==="paper" && compChose==="rock"){return("Player")}
+    else if(playerChoise==="scissors" && compChose==="paper"){return("Player")}
+    else {return("Computer")}
     
 }
 
-function playRound () {
-    
-    if(playerChoise===computerChoice){winner.innerHTML="Tie", tie.innerHTML= 'Ties: '+ (tiescore+=1),
-    round.innerHTML = 'Round: ' + (roundcount+=1)}
-    else if (playerChoise==='rock'&& computerChoice==='scissors')
-    {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' (userscore+=1),
-    round.innerHTML = 'Round: ' + (roundcount+=1)}
-    else if (playerChoise==='paper'&& computerChoice==='rock')
-    {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1),
-    round.innerHTML = 'Round: ' + (roundcount+=1)}
-    else if (playerChoise==='scissors'&& computerChoice==='paper')
-    {winner.innerHTML="Player won the Round",ps.innerHTML='Player Score: ' +(userscore+=1),
-    round.innerHTML = 'Round: ' + (roundcount+=1)}
-    else{winner.innerHTML="Computer won the Round",
-    cs.innerHTML='Computer Score: ' + (compscore+=1),
-    round.innerHTML = 'Round: ' + (roundcount+=1)}
+function showWinner (winner,playerChoise,compChose) {
+    if (winner === "Player") {
+        round.innerHTML = "Round " + (roundcount++)
+        playerScore.innerHTML = "Player Score : " + (pscore+=1);
+        compScore.innerHTML = "Computer Score :" + cscore;
+        tie.innerHTML = "Tie Games : " + tiescore;
+        playerChose.innerHTML = "Player Chose : " + playerChoise;
+        computerChose.innerHTML = "Computer Chose : " + compChose;
+        roundWinner.innerHTML = "Round Won by : " + winner;
+    }
+    else if (winner === "Computer") {
+        round.innerHTML = "Round " + (roundcount++)
+        playerScore.innerHTML = "Player Score : " + pscore;
+        compScore.innerHTML = "Computer Score :" + (cscore+=1);
+        tie.innerHTML = "Tie Games : " + tiescore;
+        playerChose.innerHTML = "Player Chose : " + playerChoise;
+        computerChose.innerHTML = "Computer Chose : " + compChose;
+        roundWinner.innerHTML = "Round Won by : " + winner;
+    }
+    else {
+        round.innerHTML = "Round " + (roundcount++)
+        playerChose.innerHTML = "Player Chose : " + playerChoise;
+        computerChose.innerHTML = "Computer Chose : " + compChose;
+        tie.innerHTML = "Tie Games : " + (tiescore+=1);
+        roundWinner.innerHTML = winner;
+    }
 }
 
-function points () {
-
-    if(userscore===5) {gameWinner.style.display="block",gameWinner.innerHTML=("YOU WON!!!!YOU GO GET YOUR DREAMS"),againHide()}
-    else if (compscore===5) {gameWinner.style.display="block",gameWinner.innerHTML=("GAME OVER"),againHide()}
-    else if(tiescore===5){gameWinner.style.display="block",gameWinner.innerHTML=("Tie Game"),againHide ()}
-            
+function winnerOfTheGame (pscore,cscore,tiescore) {
+    if(pscore === 5){   gameWinner.style.display="block";
+                        gameWinner.innerHTML="Gluckwunch du hast Gewonnen";
+                        scoreBoard.style.display="none";
+                        round.style.display = "none";
+                        btns.style.display="none";
+                        restart.style.display="block";
+                    }
+    else if (cscore === 5){     gameWinner.style.display="block";
+                                gameWinner.innerHTML="Du hast Verloren!!!";
+                                scoreBoard.style.display="none";
+                                round.style.display = "none";
+                                btns.style.display="none";
+                                restart.style.display="block"}
+    
+    else if (tiescore === 10){  gameWinner.style.display="block";
+                                gameWinner.innerHTML="Unentschieden";
+                                scoreBoard.style.display="none";
+                                round.style.display = "none";
+                                btns.style.display="none";
+                                restart.style.display="block"
+        }
 }
+function restartTheGame () {
+    rBtn.addEventListener('click',function() {
+    round.style.display = "block";
+    gameWinner.style.display = "none";
+    restart.style.display = "none";
+    btns.style.display="block";
+    scoreBoard.style.display="block";
+    pscore = 0;
+    cscore = 0;
+    tiescore = 0;
+    roundcount = 1;
+    playerScore.innerHTML = "Player Score : " + pscore;
+    compScore.innerHTML = "Computer Score :" + cscore;
+    tie.innerHTML = "Tie Games : " + tiescore;
+    round.innerHTML = "Round " + (roundcount++);
+})
 
-function Game () {
-    
-    no.addEventListener('click', goodBye);
-    yes.addEventListener('click' , revealSigns);
-    round.innerHTML = 'Round: ' + (roundcount=1);
-    tie.innerHTML= 'Ties: '+ (tiescore=0);
-    ps.innerHTML='Player Score: ' + (userscore=0);
-    cs.innerHTML='Computer Score: ' + (compscore=0);
-    sign.forEach((sign) => {
-        sign.addEventListener("click", function () {   
-            playerTurn();
-            computerTurn();
-            playRound ();
-            points();  
-            restart.addEventListener('click', function () {
-                restart.style.display="none";
-                gameWinner.style.display="none";
-                show();
-            })
-        })
-        })}
-    
-
-
+}
 Game();
+
