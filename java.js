@@ -1,73 +1,151 @@
-function getComputerChoice () {
-    let choice;
-        let computer = Math.floor(Math.random()*10);
-                computer <=3 ? choice="rock" 
-                : computer <=6 && computer >=4 ? choice="paper"
-                : computer > 6 ? choice = "scissors"
-                : "dick"
-                alert("Computerchoice: " + choice);
-                return(choice);
-}
+const round = document.querySelector('.round');
+const btn = document.querySelectorAll('.btn');
+const btns = document.querySelector('.btns')
+const playerChose = document.querySelector('.playerChose');
+const computerChose = document.querySelector('.computerChose');
+const playerScore = document.querySelector('.playerScore');
+const compScore = document.querySelector('.compScore');
+const tie = document.querySelector('.tie');
+const roundWinner = document.querySelector('.roundWinner');
+const scoreBoard = document.querySelector('.scoreBoard');
+const gameWinner = document.querySelector('.gameWinner');
+const restart = document.querySelector('.restart')
+const rBtn = document.querySelector('.rBtn');
+const yesBtn = document.querySelector ('#yesBtn');
+const noBtn = document.querySelector('#noBtn');
+const h1 = document.querySelector('h1');
+const h2 = document.querySelector('h2');
+const pag = document.querySelector('.pag');
+const tagb = document.querySelector('.tagb');
 
-function getPlayerChoice () {
+let pscore = 0;
+let cscore = 0;
+let tiescore = 0;
+let roundcount = 1;
+let compChose;
+let playerChoise;
+let winner;
 
-
-    let playerChoice = prompt("Eneter Rock,Paper or Scissors...???");
-    if (playerChoice){
-    let playerOne = playerChoice.trim().toLowerCase();
+function Game () {
     
-        if(playerOne === "rock" 
-        || playerOne === "paper" 
-        || playerOne === "scissors") 
-        {
-        alert("PlayerChoice: " + playerOne);
-        return(playerOne);
-}  } else {alert("You came alll this way just to give up now...dude...now you Play!!!")}return;}
+        btn.forEach((btn) => {
+        yes()
+        no()
+        btn.addEventListener("click", function () {
+            round.style.display = "block"; 
+            scoreBoard.style.display = "block"; 
+            playerChoise = btn.id;
+            compChose = getComputerChoise();
+            winner = playRound(playerChoise,compChose);
+            showWinner(winner,playerChoise,compChose);
+            winnerOfTheGame(pscore,cscore,tiescore);
+            restartTheGame();
+            console.log(playerChoise,compChose,winner);
+        
+        })
+    })
+}
 
 
-function playRound (playerSelection,computerSelection) {     
-
-
-let userscore=0;
-let compscore=0;
-
-let a = confirm("Wanne play a game?")
-if (a) {
-let a = prompt("How many rounds do you wanne play?")
-if(a){
-for(i = 1; i <= a; i++){
-    alert("Round: " + i)
+function yes () {
+    yesBtn.addEventListener("click",function (){
+    h1.style.display = 'none';
+    pag.style.display = 'none';
+    h2.style.display = 'block';
+    btns.style.display = 'block';
     
-playerSelection = getPlayerChoice();
-computerSelection = getComputerChoice();
-
-
-if (playerSelection === computerSelection) {alert("Tie Game"), i-=1, alert("Same Round:")}
-
-else if (playerSelection === "rock" && computerSelection === "scissors") 
-{ alert("Player is the winner", + ("Playerscore :" +(userscore+=1)))}
-
-else if(playerSelection === "paper" && computerSelection === "rock") 
-{ alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
-
-else if(playerSelection === "scissors" && computerSelection === "paper") 
-{ alert("Player is the winner", +("Playerscore :" +(userscore+=1)))}
-
-else {alert("Computer is the winner", +("Computerscore: " + (compscore+=1) ))}
-} 
-
-if(userscore>compscore) {alert("YOU WON!!!!YOU GO GET YOUR DREAMS")}
-else if (userscore<compscore) {alert("GAME OVER")}
-else{""}
+})
 }
-else {alert("You like wasting Time?....Bye!!!")}
+function no () {
+    noBtn.addEventListener('click',function(){
+        h1.style.display = 'none';
+        pag.style.display = 'none';
+        tagb.style.display = 'block';
+    })
 }
-else{alert("OK,bye")}
-return;
-
-
+function getComputerChoise () {
+    let computer = ["rock","paper","scissors"];
+    compChose = computer[Math.floor(Math.random()*3)];
+    return(compChose);
 }
 
+function playRound (playerChoise,compChose) { 
 
+    if (playerChoise === compChose){return("Tie Game")}
+    else if(playerChoise==="rock" && compChose==="scissors"){return("Player")}
+    else if(playerChoise==="paper" && compChose==="rock"){return("Player")}
+    else if(playerChoise==="scissors" && compChose==="paper"){return("Player")}
+    else {return("Computer")}
+    
+}
 
-playRound();
+function showWinner (winner,playerChoise,compChose) {
+    if (winner === "Player") {
+        round.innerHTML = "Round " + (roundcount++)
+        playerScore.innerHTML = "Player Score : " + (pscore+=1);
+        compScore.innerHTML = "Computer Score :" + cscore;
+        tie.innerHTML = "Tie Games : " + tiescore;
+        playerChose.innerHTML = "Player Chose : " + playerChoise;
+        computerChose.innerHTML = "Computer Chose : " + compChose;
+        roundWinner.innerHTML = "Round Won by : " + winner;
+    }
+    else if (winner === "Computer") {
+        round.innerHTML = "Round " + (roundcount++)
+        playerScore.innerHTML = "Player Score : " + pscore;
+        compScore.innerHTML = "Computer Score :" + (cscore+=1);
+        tie.innerHTML = "Tie Games : " + tiescore;
+        playerChose.innerHTML = "Player Chose : " + playerChoise;
+        computerChose.innerHTML = "Computer Chose : " + compChose;
+        roundWinner.innerHTML = "Round Won by : " + winner;
+    }
+    else {
+        round.innerHTML = "Round " + (roundcount++)
+        playerChose.innerHTML = "Player Chose : " + playerChoise;
+        computerChose.innerHTML = "Computer Chose : " + compChose;
+        tie.innerHTML = "Tie Games : " + (tiescore+=1);
+        roundWinner.innerHTML = winner;
+    }
+}
+
+function winnerOfTheGame (pscore,cscore,tiescore) {
+    if(pscore === 5){   gameWinner.style.display="block";
+                        gameWinner.innerHTML="Gluckwunch du hast Gewonnen";
+                        scoreBoard.style.display="none";
+                        round.style.display = "none";
+                        btns.style.display="none";
+                        restart.style.display="block";
+                    }
+    else if (cscore === 5){     gameWinner.style.display="block";
+                                gameWinner.innerHTML="Du hast Verloren!!!";
+                                scoreBoard.style.display="none";
+                                round.style.display = "none";
+                                btns.style.display="none";
+                                restart.style.display="block"}
+    
+    else if (tiescore === 10){  gameWinner.style.display="block";
+                                gameWinner.innerHTML="Unentschieden";
+                                scoreBoard.style.display="none";
+                                round.style.display = "none";
+                                btns.style.display="none";
+                                restart.style.display="block"
+        }
+}
+function restartTheGame () {
+    rBtn.addEventListener('click',function() {
+    round.style.display = "block";
+    gameWinner.style.display = "none";
+    restart.style.display = "none";
+    btns.style.display="block";
+    scoreBoard.style.display="block";
+    pscore = 0;
+    cscore = 0;
+    tiescore = 0;
+    roundcount = 1;
+    playerScore.innerHTML = "Player Score : " + pscore;
+    compScore.innerHTML = "Computer Score :" + cscore;
+    tie.innerHTML = "Tie Games : " + tiescore;
+    round.innerHTML = "Round " + (roundcount++);
+})
+
+}
+Game();
