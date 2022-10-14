@@ -17,6 +17,7 @@ const h1 = document.querySelector('h1');
 const h2 = document.querySelector('h2');
 const pag = document.querySelector('.pag');
 const tagb = document.querySelector('.tagb');
+const no2 = document.querySelector('.no');
 
 let pscore = 0;
 let cscore = 0;
@@ -114,13 +115,16 @@ function winnerOfTheGame (pscore,cscore,tiescore) {
                         round.style.display = "none";
                         btns.style.display="none";
                         restart.style.display="block";
+                        h2.style.display="none";
                     }
     else if (cscore === 5){     gameWinner.style.display="block";
                                 gameWinner.innerHTML="Du hast Verloren!!!";
                                 scoreBoard.style.display="none";
                                 round.style.display = "none";
                                 btns.style.display="none";
-                                restart.style.display="block"}
+                                restart.style.display="block"
+                                h2.style.display="none";
+                            }
     
     else if (tiescore === 10){  gameWinner.style.display="block";
                                 gameWinner.innerHTML="Unentschieden";
@@ -128,6 +132,7 @@ function winnerOfTheGame (pscore,cscore,tiescore) {
                                 round.style.display = "none";
                                 btns.style.display="none";
                                 restart.style.display="block"
+                                h2.style.display="none";
         }
 }
 function restartTheGame () {
@@ -136,7 +141,7 @@ function restartTheGame () {
     gameWinner.style.display = "none";
     restart.style.display = "none";
     btns.style.display="block";
-    scoreBoard.style.display="block";
+    h2.style.display="block";
     pscore = 0;
     cscore = 0;
     tiescore = 0;
@@ -146,6 +151,10 @@ function restartTheGame () {
     tie.innerHTML = "Tie Games : " + tiescore;
     round.innerHTML = "Round " + (roundcount++);
 })
-
+    no2.addEventListener('click',function(){
+        tagb.style.display='block';
+        gameWinner.style.display = "none";
+        restart.style.display = 'none';
+    })
 }
 Game();
